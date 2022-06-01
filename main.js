@@ -1,0 +1,1 @@
+(()=>{"use strict";const e=(e="No name",t=" ",o="None",i=0,n=!1,c="Inbox")=>({title:e,description:t,dueDate:o,priority:i,completed:n,project:c});e(),e("Testing")})();
