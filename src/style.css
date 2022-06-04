@@ -1,0 +1,48 @@
+:root {
+    --sidebarColor: rgb(177, 173, 173);
+    --bgColor: pink;
+    --projectHoverColor: rgb(86, 190, 204);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#mainContainer {
+    width: 100vw;
+    min-height: 100vh;
+    display: grid;
+
+    grid-template-columns: 1fr 4fr;
+}
+
+#sidebar {
+    background-color: var(--sidebarColor);
+    display: grid;
+    grid-auto-rows: min-content;
+}
+
+#content {
+    background-color: var(--bgColor);
+}
+
+#sidebar div {
+    margin: 0;
+    display: grid;
+}
+
+#sidebar div:hover {
+    background-color: var(--projectHoverColor);
+
+}
+
+#sidebar p {
+    justify-self: center;
+    color: white;
+    margin: 10px;
+    font-size: 2rem;
+    font-family: sans-serif;
+}
+
+#sidebar p:hover {}
