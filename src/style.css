@@ -25,16 +25,21 @@ body {
 
 #content {
     background-color: var(--bgColor);
+    display: grid;
+    grid-auto-rows: min-content;
 }
 
 #sidebar div {
     margin: 0;
     display: grid;
+    grid-template-columns: repeat(2, min-content);
+    align-items: center;
+    justify-content: space-between;
+    overflow: auto;
 }
 
-#sidebar div:hover {
+#sidebar div:hover:not(.chosenProject) {
     background-color: var(--projectHoverColor);
-
 }
 
 #sidebar p {
@@ -45,4 +50,26 @@ body {
     font-family: sans-serif;
 }
 
-#sidebar p:hover {}
+.chosenProject {
+    background-color: turquoise;
+}
+
+.taskWrapper {
+    display: grid;
+    padding-left: 50px;
+    box-shadow: 0 4px 2px -2px gray;
+}
+
+#content p {
+    justify-self: flex-start;
+    color: white;
+    margin: 10px;
+    font-size: 2rem;
+    font-family: sans-serif;
+}
+
+.delProjectIcon {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 15px;
+}
