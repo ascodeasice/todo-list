@@ -2,11 +2,20 @@
     --sidebarColor: rgb(177, 173, 173);
     --bgColor: pink;
     --projectHoverColor: rgb(86, 190, 204);
+    --fontSize: 2rem;
+    --formWidth: 30%;
+    --formHeight: 60%;
+    --formColor: rgb(197, 65, 65);
 }
 
 body {
     margin: 0;
     padding: 0;
+}
+
+img {
+    width: var(--fontSize);
+    height: var(--fontSize);
 }
 
 #mainContainer {
@@ -32,7 +41,7 @@ body {
 #sidebar div {
     margin: 0;
     display: grid;
-    grid-template-columns: repeat(2, min-content);
+    grid-template-columns: 1fr min-content;
     align-items: center;
     justify-content: space-between;
     overflow: auto;
@@ -46,7 +55,7 @@ body {
     justify-self: center;
     color: white;
     margin: 10px;
-    font-size: 2rem;
+    font-size: var(--fontSize, 2rem);
     font-family: sans-serif;
 }
 
@@ -54,22 +63,37 @@ body {
     background-color: turquoise;
 }
 
-.taskWrapper {
+#content div {
     display: grid;
+    grid-template-columns: min-content 1fr;
+    overflow: auto;
     padding-left: 50px;
     box-shadow: 0 4px 2px -2px gray;
+    align-items: center;
 }
 
 #content p {
     justify-self: flex-start;
     color: white;
     margin: 10px;
-    font-size: 2rem;
+    font-size: var(--fontSize, 2rem);
     font-family: sans-serif;
 }
 
-.delProjectIcon {
-    width: 2rem;
-    height: 2rem;
+#sidebar img {
+    width: var(--fontSize, 2rem);
+    height: var(--fontSize, 2rem);
     margin-right: 15px;
+}
+
+.form {
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    border-radius: 2rem;
+    width: var(--formWidth);
+    height: var(--formHeight);
+    background-color: var(--formColor);
+    border: 2px solid white;
+    visibility: hidden;
 }

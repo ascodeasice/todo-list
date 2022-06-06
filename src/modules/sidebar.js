@@ -1,31 +1,16 @@
 //render sidebar components
-import Project from "./Project";
-import Task from "./Task";
 import Cross from "../assets/cross.svg"
+import Plus from "../assets/plus.svg"
 import { renderContent } from "./content";
 
 const sidebar = document.getElementById("sidebar");
 
-const renderSidebar = (projectList) => {
-    sidebar.innerText = "";
-    projectList.forEach(project => {
-        const wrapper = document.createElement("div");
-        wrapper.classList.add("projectWrapper");
-        wrapper.setAttribute("id", project.name);
-        const projectText = document.createElement("p");
-        projectText.innerText = project.name;
-
-        const cross = document.createElement("img");
-        cross.src = Cross;
-        cross.classList.add("delProjectIcon");
-
-        wrapper.appendChild(projectText);
-        wrapper.appendChild(cross);
-        sidebar.appendChild(wrapper);
+const addAddProjectListener = () => {
+    const addProject = document.getElementById("addProjectContainer");
+    addProject.addEventListener("click", () => {
+        const form = document.getElementById("addProjectForm");
+        form.style.visibility = "visible";
     })
-    renderContent(projectList[0]);
-    addIconListener(projectList);
-    addSidebarListener(projectList);
 }
 
 const addSidebarListener = (projectList) => {
@@ -52,4 +37,46 @@ const addIconListener = (projectList) => {
     }
 }
 
-export { renderSidebar, addSidebarListener, addIconListener };
+const renderSidebar = (projectList) => {
+    sidebar.innerText = "";
+    //render projects
+    projectList.forEach(project => {
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("projectWrapper");
+        wrapper.setAttribute("id", project.name);
+
+        const projectText = document.createElement("p");
+        projectText.innerText = project.name;
+
+        const cross = document.createElement("img");
+        cross.src = Cross;
+        cross.classList.add("delProjectIcon");
+
+        wrapper.appendChild(projectText);
+        wrapper.appendChild(cross);
+        sidebar.appendChild(wrapper);
+    }
+    )
+    //render "add projects"
+    const container = document.createElement("div");
+    container.setAttribute("id", "addProjectContainer");
+
+    const addText = document.createElement("p");
+    addText.innerText = "Add project";
+
+    const addIcon = document.createElement("img");
+    addIcon.src = Plus;
+
+    container.appendChild(addText);
+    container.appendChild(addIcon);
+    sidebar.appendChild(container);
+
+    renderContent(projectList[0]);
+    addIconListener(projectList);
+    addSidebarListener(projectList);
+    addAddProjectListener();
+}
+
+
+
+export { renderSidebar };
