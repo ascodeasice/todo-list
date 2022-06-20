@@ -13,15 +13,29 @@
         <div id="sidebar"></div>
         <div id="content"></div>
     </div>
-    <div id="addProjectForm" class="form">
-        <button class="addBtn"></button>
-        <button class="cancelBtn"></button>
-    </div>
-    <div id="addTaskForm" class="form">
-        <button class="addBtn"></button>
-        <button class="cancelBtn"></button>
 
-    </div>
+
+    <form onsubmit="return false">
+        <div id="addProjectForm" class="addForm">
+            <div id="projectInputContainer" class="inputContainer">
+                <label for="projectTitleInput" id="projectTitleLabel">Title:</label>
+                <input type="text" name="title" id="projectTitleInput" required>
+            </div>
+            <button type="submit" id="addProjectBtn" class="addBtn">Confirm</button>
+            <button id="cancelAddProjectBtn" class="cancelAddBtn">Cancel</button>
+        </div>
+    </form>
+
+    <form onsubmit="return false">
+        <div id="addTaskForm" class="addForm">
+            <div id="TaskInputContainer" class="inputContainer">
+                <label for="taskTitleInput" id="taskTitleLabel">Title:</label>
+                <input type="text" name="title" id="taskTitleInput" required>
+            </div>
+            <button id="addTaskBtn" class="addBtn">Confirm</button>
+            <button id="cancelAddTaskBtn" class="cancelAddBtn">Cancel</button>
+        </div>
+    </form>
     <script src="main.js"></script>
 </body>
 
