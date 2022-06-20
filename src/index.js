@@ -8,4 +8,18 @@ let projects = [Project("Inbox", [Task("Example"), Task()]), Project("Coding", [
 renderSidebar(projects);
 renderContent(projects[0]);
 document.getElementById("Inbox").classList.add("chosenProject");
+const projectForm = document.getElementById("addProjectForm");
 
+document.getElementById("addProjectBtn").addEventListener("click", () => {
+    const titleInput = document.getElementById("projectTitleInput");
+    if (titleInput.value == "")
+        return;
+    projects.push(Project(titleInput.value, []));
+    renderSidebar(projects);
+    titleInput.value = "";
+    projectForm.style.visibility = "hidden";
+})
+
+document.getElementById("cancelAddProjectBtn").addEventListener("click", () => {
+    projectForm.style.visibility = "hidden";
+})

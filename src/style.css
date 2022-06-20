@@ -6,6 +6,10 @@
     --formWidth: 30%;
     --formHeight: 60%;
     --formColor: rgb(197, 65, 65);
+    --addBtnColor: green;
+    --cancelAddBtnColor: orange;
+    --btnHeight: 30px;
+    --btnWidth: calc(3 * var(--btnHeight));
 }
 
 body {
@@ -18,11 +22,26 @@ img {
     height: var(--fontSize);
 }
 
+button {
+    border-radius: 2rem;
+    width: var(--btnWidth);
+    height: var(--btnHeight);
+    color: white;
+    border: none;
+}
+
+button:hover {
+    background-color: var(--projectHoverColor)
+}
+
+label {
+    color: white;
+}
+
 #mainContainer {
     width: 100vw;
     min-height: 100vh;
     display: grid;
-
     grid-template-columns: 1fr 4fr;
 }
 
@@ -86,7 +105,7 @@ img {
     margin-right: 15px;
 }
 
-.form {
+.addForm {
     position: absolute;
     top: 20%;
     left: 35%;
@@ -96,4 +115,24 @@ img {
     background-color: var(--formColor);
     border: 2px solid white;
     visibility: hidden;
+}
+
+.addBtn {
+    position: absolute;
+    bottom: 10%;
+    left: 20%;
+    background-color: var(--addBtnColor);
+}
+
+.cancelAddBtn {
+    position: absolute;
+    bottom: 10%;
+    right: 20%;
+    background-color: var(--cancelAddBtnColor);
+}
+
+.inputContainer {
+    position: absolute;
+    top: 10%;
+    left: 10%;
 }
