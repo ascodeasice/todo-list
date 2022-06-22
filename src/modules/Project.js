@@ -9,7 +9,12 @@ const Project = (name, taskList) => {
         taskList[index].copmleted = true;
         taskList.splice(index, 1);// remove the task
     }
-    return { name, taskList, complete }
+
+    const addTask = (task) => {
+        taskList.push(task);
+    }
+
+    return { name, taskList, complete, addTask }
 }
 
 export default Project;

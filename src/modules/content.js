@@ -3,12 +3,20 @@ import Circle from "../assets/circle.svg"
 
 const contentDiv = document.getElementById("content")
 
+const addAddTaskListener = () => {
+    const addTask = document.getElementById("addTaskContainer");
+    addTask.addEventListener("click", () => {
+        const form = document.getElementById("addTaskForm");
+        form.style.visibility = "visible";
+    })
+}
+
+
 function addCompleteIconListener(project) {
     const icons = document.getElementsByClassName("completeIcon");
     for (let i = 0; i < icons.length; i++) {
         icons[i].addEventListener("click", function () {
             project.taskList.splice(i, 1);
-            console.table(project.taskList);
             renderContent(project);
         })
     }
@@ -50,6 +58,7 @@ function renderContent(project) {
     contentDiv.appendChild(container);
 
     addCompleteIconListener(project);
+    addAddTaskListener();
 }
 
 export { renderContent };

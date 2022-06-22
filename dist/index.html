@@ -18,7 +18,7 @@
     <form onsubmit="return false">
         <div id="addProjectForm" class="addForm">
             <div id="projectInputContainer" class="inputContainer">
-                <label for="projectTitleInput" id="projectTitleLabel">Title:</label>
+                <label for="projectTitleInput" id="projectTitleLabel">Title*</label>
                 <input type="text" name="title" id="projectTitleInput" required>
             </div>
             <button type="submit" id="addProjectBtn" class="addBtn">Confirm</button>
@@ -29,8 +29,14 @@
     <form onsubmit="return false">
         <div id="addTaskForm" class="addForm">
             <div id="TaskInputContainer" class="inputContainer">
-                <label for="taskTitleInput" id="taskTitleLabel">Title:</label>
+                <label for="taskTitleInput" id="taskTitleLabel">Title*</label>
                 <input type="text" name="title" id="taskTitleInput" required>
+                <label for="taskDesInput" id="taskDesLabel">Description</label>
+                <input type="text" name="description" id="taskDesInput">
+                <label for="taskPriorityInput">Priority</label>
+                <input type="number" name="#" id="taskPriorityInput" value="1" min="1" max="4" required>
+                <label for="taskDateInput">Due Date</label>
+                <input type="date" name="#" id="taskDateInput" value="">
             </div>
             <button id="addTaskBtn" class="addBtn">Confirm</button>
             <button id="cancelAddTaskBtn" class="cancelAddBtn">Cancel</button>
