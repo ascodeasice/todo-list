@@ -42,6 +42,24 @@
             <button id="cancelAddTaskBtn" class="cancelAddBtn">Cancel</button>
         </div>
     </form>
+
+    <form onsubmit="return false">
+        <div id="editTaskForm" class="addForm">
+            <div id="TaskInputContainer" class="inputContainer">
+                <label for="taskTitleInput" id="taskTitleLabel">Title*</label>
+                <input type="text" name="title" id="editTaskTitleInput" required>
+                <label for="taskDesInput" id="taskDesLabel">Description</label>
+                <input type="text" name="description" id="editTaskDesInput">
+                <label for="taskPriorityInput">Priority(1 is least important)</label>
+                <input type="number" name="#" id="editTaskPriorityInput" value="1" min="1" max="4" required>
+                <label for="taskDateInput">Due Date</label>
+                <input type="date" name="#" id="editTaskDateInput" value="">
+            </div>
+            <button id="editTaskBtn" class="addBtn">Edit</button>
+            <button id="cancelEditTaskBtn" class="cancelAddBtn">Cancel</button>
+        </div>
+    </form>
+
     <script src="main.js"></script>
 </body>
 
