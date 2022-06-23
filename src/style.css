@@ -2,11 +2,13 @@
     --sidebarColor: rgb(177, 173, 173);
     --bgColor: pink;
     --projectHoverColor: rgb(86, 190, 204);
+    --smallFontSize: 1.5rem;
     --fontSize: 2rem;
     --formWidth: 30%;
     --formHeight: 60%;
     --formColor: rgb(197, 65, 65);
     --addBtnColor: green;
+    --taskInfoColor: gray;
     --cancelAddBtnColor: orange;
     --btnHeight: 30px;
     --btnWidth: calc(3 * var(--btnHeight));
@@ -86,6 +88,7 @@ label {
 #content div {
     display: grid;
     grid-template-columns: min-content 1fr;
+    grid-template-rows: repeat(3, min-content);
     overflow: auto;
     padding-left: 50px;
     box-shadow: 0 4px 2px -2px gray;
@@ -138,4 +141,41 @@ label {
     left: 10%;
     display: grid;
     grid-template-rows: min-content min-content;
+}
+
+/* date and description of task */
+#content .taskInfo {
+    font-size: var(--smallFontSize);
+    margin: 0;
+    color: var(--taskInfoColor);
+}
+
+.taskDes {
+    grid-row: 2/3;
+    grid-column: 2/3;
+}
+
+.taskDate {
+    grid-row: 3/4;
+    grid-column: 2/3;
+}
+
+/* gray */
+.priority1Icon {
+    filter: invert(61%) sepia(0%) saturate(539%) hue-rotate(204deg) brightness(83%) contrast(84%);
+}
+
+/* blue */
+.priority2Icon {
+    filter: invert(35%) sepia(44%) saturate(2571%) hue-rotate(199deg) brightness(92%) contrast(90%);
+}
+
+/* orange */
+.priority3Icon {
+    filter: invert(74%) sepia(37%) saturate(6479%) hue-rotate(359deg) brightness(95%) contrast(94%);
+}
+
+/* red */
+.priority4Icon {
+    filter: invert(43%) sepia(98%) saturate(4118%) hue-rotate(342deg) brightness(89%) contrast(82%);
 }

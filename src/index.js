@@ -9,5 +9,5 @@ let projects = [Project("Inbox", [Task("Example"), Task()]), Project("Coding", [
 renderSidebar(projects);
 renderContent(projects[0]);
 document.getElementById("Inbox").classList.add("chosenProject");//choose inbox by default
-addProjectFormListeners();
-addTaskFormListeners();
+addProjectFormListeners(projects);
+addTaskFormListeners(projects);

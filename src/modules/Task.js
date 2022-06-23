@@ -1,8 +1,8 @@
 //class factory of the Task class
 
-//priority should be 1(most important)~4(least important)
+//priority should be 1(least important)~4(most important)
 //due date stores date string
-const Task = (title = "No name", description = " ", dueDate = "None", priority = 1, completed = false) => {
+const Task = (title = "No name", description = "", dueDate = "", priority = 1, completed = false) => {
     return { title, description, dueDate, priority, completed };
 }
 

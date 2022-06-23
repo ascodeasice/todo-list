@@ -1,3 +1,4 @@
+//control the task content on the right side
 import Plus from "../assets/plus.svg"
 import Circle from "../assets/circle.svg"
 
@@ -10,7 +11,6 @@ const addAddTaskListener = () => {
         form.style.visibility = "visible";
     })
 }
-
 
 function addCompleteIconListener(project) {
     const icons = document.getElementsByClassName("completeIcon");
@@ -33,14 +33,27 @@ function renderContent(project) {
         const completeIcon = document.createElement("img");
         completeIcon.src = Circle;
         completeIcon.classList.add("completeIcon");
+        completeIcon.classList.add("priority" + String(task.priority) + "Icon");
 
         const taskText = document.createElement("p");
         taskText.classList.add("taskText");
         taskText.innerText = String(project.taskList.indexOf(task) + 1) + ". " + task.title;
 
+        const taskDes = document.createElement("p");//TODO change task title to heading
+        taskDes.classList.add("taskInfo");
+        taskDes.classList.add("taskDes");//for position in grid
+        taskDes.innerText = task.description;
+
+        const taskDate = document.createElement("p");
+        taskDate.classList.add("taskInfo");
+        taskDate.classList.add("taskDate");//for position in grid
+        taskDate.innerText = task.dueDate;//NOTE might chnage the format
+
         wrapper.appendChild(completeIcon);
         wrapper.appendChild(taskText);
-        contentDiv.appendChild(wrapper)
+        wrapper.appendChild(taskDes);
+        wrapper.appendChild(taskDate);
+        contentDiv.appendChild(wrapper);
     })
 
     //render "add tasks"
