@@ -19,8 +19,6 @@ const taskPriorityInput = document.getElementById("taskPriorityInput");
 const taskDesInput = document.getElementById("taskDesInput");
 const taskDateInput = document.getElementById("taskDateInput");
 
-//TODO edit project name
-
 function addProjectFormListeners(projects) {
     addProjectBtn.addEventListener("click", () => {
         if (projectTitleInput.value == "")

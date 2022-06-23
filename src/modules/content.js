@@ -52,28 +52,25 @@ function addEditTaskIconListener(project) {
         icons[i].addEventListener("click", () => {
             chosenTaskIndex = i;
             editTaskForm.style.visibility = "visible";
-
             let task = project.taskList[chosenTaskIndex];
 
             editTaskTitleInput.value = task.title;
             editTaskPriorityInput.value = task.priority;
             editTaskDesInput.value = task.description;
             editTaskDateInput.value = task.dueDate;
+        })
 
-            editTaskBtn.addEventListener("click", () => {
-                if (editTaskTitleInput.value == "" || editTaskPriorityInput.value == "")
-                    return;
-                const newTask = Task(editTaskTitleInput.value, editTaskDesInput.value, editTaskDateInput.value, editTaskPriorityInput.value);
-                project.taskList[chosenTaskIndex] = newTask;
-                console.table(project.taskList);
-                renderContent(project);
-                editTaskForm.style.visibility = "hidden";
-            });
+        editTaskBtn.addEventListener("click", () => {
+            if (editTaskTitleInput.value == "" || editTaskPriorityInput.value == "")
+                return;
+            const newTask = Task(editTaskTitleInput.value, editTaskDesInput.value, editTaskDateInput.value, editTaskPriorityInput.value);
+            project.taskList[chosenTaskIndex] = newTask;
+            renderContent(project);
+            editTaskForm.style.visibility = "hidden";
+        });
 
-            cancelEditTaskBtn.addEventListener("click", () => {
-                editTaskForm.style.visibility = "hidden";
-            })
-
+        cancelEditTaskBtn.addEventListener("click", () => {
+            editTaskForm.style.visibility = "hidden";
         })
     }
 }

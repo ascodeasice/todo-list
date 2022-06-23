@@ -1,6 +1,4 @@
-import Task from "./Task";
-
-const Project = (name, taskList) => {
+const Project = (title, taskList) => {
     const complete = (index) => {
         if (index < 0 || index >= taskList.length) {
             console.log("Out of index in taskList")
@@ -14,7 +12,7 @@ const Project = (name, taskList) => {
         taskList.push(task);
     }
 
-    return { name, taskList, complete, addTask }
+    return { title, taskList, complete, addTask }
 }
 
 export default Project;

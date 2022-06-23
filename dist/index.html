@@ -14,7 +14,7 @@
         <div id="content"></div>
     </div>
 
-
+    <!-- add project form -->
     <form onsubmit="return false">
         <div id="addProjectForm" class="addForm">
             <div id="projectInputContainer" class="inputContainer">
@@ -26,6 +26,19 @@
         </div>
     </form>
 
+    <!-- edit project form -->
+    <form onsubmit="return false">
+        <div id="editProjectForm" class="addForm">
+            <div id="projectInputContainer" class="inputContainer">
+                <label for="editProjectTitleInput" id="editProjectTitleLabel">Title*</label>
+                <input type="text" name="title" id="editProjectTitleInput" required>
+            </div>
+            <button type="submit" id="editProjectBtn" class="addBtn">Confirm</button>
+            <button id="cancelEditProjectBtn" class="cancelAddBtn">Cancel</button>
+        </div>
+    </form>
+
+    <!-- add task form -->
     <form onsubmit="return false">
         <div id="addTaskForm" class="addForm">
             <div id="TaskInputContainer" class="inputContainer">
@@ -43,6 +56,7 @@
         </div>
     </form>
 
+    <!-- edit task form -->
     <form onsubmit="return false">
         <div id="editTaskForm" class="addForm">
             <div id="TaskInputContainer" class="inputContainer">
