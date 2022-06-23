@@ -1,7 +1,8 @@
 //render sidebar components
-import Cross from "../assets/cross.svg"
+import TrashCan from "../assets/trash-can.svg"
 import Plus from "../assets/plus.svg"
 import Edit from "../assets/edit.svg"
+import CirclePlus from "../assets/circlePlus.svg"
 import { renderContent } from "./content";
 
 const sidebar = document.getElementById("sidebar");
@@ -13,9 +14,18 @@ let editProjectIndex = 0;//project that is editing
 
 function addAddProjectListener() {
     const addProject = document.getElementById("addProjectContainer");
+    const icon = document.getElementById("addProjectIcon");
     addProject.addEventListener("click", () => {
         const form = document.getElementById("addProjectForm");
         form.style.visibility = "visible";
+    })
+
+    addProject.addEventListener("mouseover", () => {
+        icon.src = CirclePlus;
+    })
+
+    addProject.addEventListener("mouseout", () => {
+        icon.src = Plus;
     })
 }
 
@@ -33,9 +43,9 @@ function addSidebarListener(projectList) {
 }
 
 function addDeleteIconListener(projectList) {
-    const crossIcons = document.getElementsByClassName("delProjectIcon");
-    for (let i = 0; i < crossIcons.length; i++) {
-        crossIcons[i].addEventListener("click", () => {
+    const deleteIcons = document.getElementsByClassName("delProjectIcon");
+    for (let i = 0; i < deleteIcons.length; i++) {
+        deleteIcons[i].addEventListener("click", () => {
             projectList.splice(i, 1);
             document.getElementById("content").innerText = "";
             renderSidebar(projectList);
@@ -77,9 +87,9 @@ function renderSidebar(projectList) {
         const projectText = document.createElement("p");
         projectText.innerText = project.title;
 
-        const cross = document.createElement("img");
-        cross.src = Cross;
-        cross.classList.add("delProjectIcon");
+        const deleteIcon = document.createElement("img");
+        deleteIcon.src = TrashCan;
+        deleteIcon.classList.add("delProjectIcon");
 
         const editIcon = document.createElement("img");
         editIcon.src = Edit;
@@ -87,7 +97,7 @@ function renderSidebar(projectList) {
 
         wrapper.appendChild(projectText);
         wrapper.appendChild(editIcon);
-        wrapper.appendChild(cross);
+        wrapper.appendChild(deleteIcon);
         sidebar.appendChild(wrapper);
     }
     )
@@ -100,6 +110,7 @@ function renderSidebar(projectList) {
 
     const addIcon = document.createElement("img");
     addIcon.src = Plus;
+    addIcon.setAttribute("id", "addProjectIcon");
 
     container.appendChild(addText);
     container.appendChild(addIcon);

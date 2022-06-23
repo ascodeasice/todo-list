@@ -1,16 +1,17 @@
 :root {
-    --sidebarColor: rgb(177, 173, 173);
-    --fontColor: white;
-    --bgColor: pink;
-    --projectHoverColor: rgb(86, 190, 204);
+    --sidebarColor: #ebecec;
+    --bgColor: white;
+    --chosenProjectColor: #dbdbdb;
     --smallFontSize: 1.5rem;
     --fontSize: 2rem;
     --formWidth: 30%;
     --formHeight: 60%;
-    --formColor: rgb(197, 65, 65);
-    --addBtnColor: green;
-    --taskInfoColor: gray;
-    --cancelAddBtnColor: orange;
+    --formColor: #FFE8D6;
+    --hoverTextColor: #db4c3f;
+    --buttonHoverColor: #769FCD;
+    --addBtnColor: #FF971D;
+    --taskInfoColor: #8f9b9b;
+    --cancelAddBtnColor: rgb(136, 129, 116);
     --btnHeight: 30px;
     --btnWidth: calc(3 * var(--btnHeight));
 }
@@ -34,12 +35,11 @@ button {
 }
 
 button:hover {
-    background-color: var(--projectHoverColor)
+    background-color: var(--buttonHoverColor)
 }
 
 label {
     padding-top: 10px;
-    color: white;
 }
 
 #mainContainer {
@@ -66,12 +66,11 @@ label {
     display: grid;
     grid-template-columns: 1fr min-content min-content;
     align-items: center;
-    /* justify-content: space-between; */
     overflow: auto;
 }
 
 #sidebar div:hover:not(.chosenProject) {
-    background-color: var(--projectHoverColor);
+    background-color: var(--chosenProjectColor);
 }
 
 #sidebar p {
@@ -86,7 +85,7 @@ label {
 }
 
 .chosenProject {
-    background-color: turquoise;
+    background-color: var(--chosenProjectColor);
 }
 
 #content div {
@@ -95,13 +94,16 @@ label {
     grid-template-rows: repeat(3, min-content);
     overflow: auto;
     padding-left: 50px;
-    box-shadow: 0 4px 2px -2px gray;
+    border-bottom: grey 1px solid;
     align-items: center;
+}
+
+#content div:hover {
+    background-color: var(--chosenProjectColor);
 }
 
 #content p {
     justify-self: flex-start;
-    color: var(--fontColor);
     margin: 10px;
     font-size: var(--fontSize, 2rem);
     font-family: sans-serif;
@@ -191,4 +193,12 @@ label {
 
 .editTaskIcon {
     margin-right: 10px;
+}
+
+#addTaskContainer:hover {
+    color: var(--hoverTextColor);
+}
+
+#addProjectContainer:hover {
+    color: var(--hoverTextColor);
 }

@@ -4,6 +4,7 @@ import Circle from "../assets/circle.svg"
 import TrashCan from "../assets/trash-can.svg"
 import Edit from "../assets/edit.svg"
 import Task from "./Task.js"
+import CirclePlus from "../assets/circlePlus.svg"
 import { format, parse, formatDistanceToNow } from "date-fns"
 
 const contentDiv = document.getElementById("content");
@@ -20,6 +21,16 @@ let chosenTaskIndex = 0;//the index of task needed to be edited
 //show the add task form
 function addAddTaskListener() {
     const addTask = document.getElementById("addTaskContainer");
+
+    const icon = document.getElementById("addTaskIcon");
+    addTask.addEventListener("mouseover", () => {
+        icon.src = CirclePlus;
+    })
+
+    addTask.addEventListener("mouseout", () => {
+        icon.src = Plus;
+    })
+
     addTask.addEventListener("click", () => {
         const form = document.getElementById("addTaskForm");
         form.style.visibility = "visible";
@@ -61,7 +72,7 @@ function addEditTaskIconListener(project) {
         })
 
         editTaskBtn.addEventListener("click", () => {
-            if (editTaskTitleInput.value == "" || editTaskPriorityInput.value == "")
+            if (editTaskTitleInput.value == "" || editTaskPriorityInput.value == "" || Number(taskPriorityInput.value) < 1 || Number(taskPriorityInput.value) > 4)
                 return;
             const newTask = Task(editTaskTitleInput.value, editTaskDesInput.value, editTaskDateInput.value, editTaskPriorityInput.value);
             project.taskList[chosenTaskIndex] = newTask;
@@ -134,6 +145,7 @@ function renderContent(project) {
 
     const addIcon = document.createElement("img");
     addIcon.src = Plus;
+    addIcon.setAttribute("id", "addTaskIcon");
 
     const addText = document.createElement("p");
     addText.innerText = "Add task";

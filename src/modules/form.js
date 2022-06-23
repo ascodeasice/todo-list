@@ -46,7 +46,7 @@ function addAddTaskFormListeners(projects) {
     addTaskBtn.addEventListener("click", () => {
         const projectWrappers = document.getElementsByClassName("projectWrapper");
 
-        if (taskTitleInput.value == "" || taskPriorityInput.value == "")
+        if (taskTitleInput.value == "" || taskPriorityInput.value == "" || Number(taskPriorityInput.value) < 1 || Number(taskPriorityInput.value) > 4)
             return;
 
         //get the chosen projectdifference between "invalid dates" (2013-13-32) and "invalid date objects" (new Date('foo')). T
