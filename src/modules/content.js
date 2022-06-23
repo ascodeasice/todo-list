@@ -3,10 +3,19 @@ import Plus from "../assets/plus.svg"
 import Circle from "../assets/circle.svg"
 import TrashCan from "../assets/trash-can.svg"
 import Edit from "../assets/edit.svg"
-import { addEditTaskFormListeners } from "./form.js"
+import Task from "./Task.js"
+import { format, parse, formatDistanceToNow } from "date-fns"
 
 const contentDiv = document.getElementById("content");
-const editForm = document.getElementById("editTaskForm");
+const editTaskForm = document.getElementById("editTaskForm");
+const editTaskBtn = document.getElementById("editTaskBtn");
+const cancelEditTaskBtn = document.getElementById("cancelEditTaskBtn");
+const editTaskTitleInput = document.getElementById("editTaskTitleInput");
+const editTaskPriorityInput = document.getElementById("editTaskPriorityInput");
+const editTaskDesInput = document.getElementById("editTaskDesInput");
+const editTaskDateInput = document.getElementById("editTaskDateInput");
+
+let chosenTaskIndex = 0;//the index of task needed to be edited
 
 //show the add task form
 function addAddTaskListener() {
@@ -37,15 +46,40 @@ function addDeleteIconListener(project) {
     }
 }
 
-//show the edit form, and fill inputs with current task info
 function addEditTaskIconListener(project) {
     const icons = document.getElementsByClassName("editTaskIcon");
     for (let i = 0; i < icons.length; i++) {
         icons[i].addEventListener("click", () => {
-            editForm.style.visibility = "visible";
-            addEditTaskFormListeners(project, i);//click button will change the i-th task
+            chosenTaskIndex = i;
+            editTaskForm.style.visibility = "visible";
+
+            let task = project.taskList[chosenTaskIndex];
+
+            editTaskTitleInput.value = task.title;
+            editTaskPriorityInput.value = task.priority;
+            editTaskDesInput.value = task.description;
+            editTaskDateInput.value = task.dueDate;
+
+            editTaskBtn.addEventListener("click", () => {
+                if (editTaskTitleInput.value == "" || editTaskPriorityInput.value == "")
+                    return;
+                const newTask = Task(editTaskTitleInput.value, editTaskDesInput.value, editTaskDateInput.value, editTaskPriorityInput.value);
+                project.taskList[chosenTaskIndex] = newTask;
+                console.table(project.taskList);
+                renderContent(project);
+                editTaskForm.style.visibility = "hidden";
+            });
+
+            cancelEditTaskBtn.addEventListener("click", () => {
+                editTaskForm.style.visibility = "hidden";
+            })
+
         })
     }
+}
+
+function isValidDate(d) {
+    return d instanceof Date && !isNaN(d);
 }
 
 function renderContent(project) {
@@ -65,15 +99,20 @@ function renderContent(project) {
         taskText.classList.add("taskText");
         taskText.innerText = task.title;
 
-        const taskDes = document.createElement("p");//TODO change task title to heading
+        const taskDes = document.createElement("p");
         taskDes.classList.add("taskInfo");
         taskDes.classList.add("taskDes");//for position in grid
         taskDes.innerText = task.description;
 
         const taskDate = document.createElement("p");
+        const dueDate = parse(task.dueDate, 'yyyy-MM-dd', new Date());
+        if (isValidDate(dueDate)) {
+            taskDate.innerText = format(dueDate, 'yyyy/LL/dd(E)') + ", " + formatDistanceToNow(dueDate, { addSuffix: true })
+        } else {
+            taskDate.innerText = "";
+        }
         taskDate.classList.add("taskInfo");
         taskDate.classList.add("taskDate");//for position in grid
-        taskDate.innerText = task.dueDate;//NOTE might chnage the format
 
         const editIcon = document.createElement("img");
         editIcon.src = Edit;
