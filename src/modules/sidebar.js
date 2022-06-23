@@ -5,7 +5,7 @@ import { renderContent } from "./content";
 
 const sidebar = document.getElementById("sidebar");
 
-const addAddProjectListener = () => {
+function addAddProjectListener() {
     const addProject = document.getElementById("addProjectContainer");
     addProject.addEventListener("click", () => {
         const form = document.getElementById("addProjectForm");
@@ -13,7 +13,7 @@ const addAddProjectListener = () => {
     })
 }
 
-const addSidebarListener = (projectList) => {
+function addSidebarListener(projectList) {
     const projectWrappers = document.getElementsByClassName("projectWrapper");
     for (let i = 0; i < projectWrappers.length; i++) {
         projectWrappers[i].addEventListener("click", function () {
@@ -26,7 +26,7 @@ const addSidebarListener = (projectList) => {
     }
 }
 
-const addIconListener = (projectList) => {
+function addIconListener(projectList) {
     const crossIcons = document.getElementsByClassName("delProjectIcon");
     for (let i = 0; i < crossIcons.length; i++) {
         crossIcons[i].addEventListener("click", () => {
@@ -37,7 +37,7 @@ const addIconListener = (projectList) => {
     }
 }
 
-const renderSidebar = (projectList) => {
+function renderSidebar(projectList) {
     sidebar.innerText = "";
     //render projects
     projectList.forEach(project => {

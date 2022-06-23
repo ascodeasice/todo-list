@@ -3,11 +3,19 @@ import Project from "./modules/Project.js";
 import { renderSidebar } from "./modules/sidebar.js";
 import { renderContent } from "./modules/content.js";
 import './style.css';
-import { addProjectFormListeners, addTaskFormListeners } from "./modules/form.js";
+import { addProjectFormListeners, addAddTaskFormListeners } from "./modules/form.js";
 
-let projects = [Project("Inbox", [Task("Example"), Task()]), Project("Coding", [Task()])];
+let exampleTasks = [];
+for (let i = 1; i <= 4; i++) {
+    exampleTasks.push(Task("Priority " + String(i), "", "", i));
+}
+exampleTasks.push(Task("With description", "Hi there", "", 1));
+exampleTasks.push(Task("With due date", "", "2022-01-01", 1));
+exampleTasks.push(Task("With both", "Trying to get into CS", "2022-06-23", 1));
+
+let projects = [Project("Example", exampleTasks), Project("Inbox", [Task("Something productive")])];
 renderSidebar(projects);
 renderContent(projects[0]);
-document.getElementById("Inbox").classList.add("chosenProject");//choose inbox by default
+document.getElementById("Example").classList.add("chosenProject");//choose inbox by default
 addProjectFormListeners(projects);
-addTaskFormListeners(projects);
+addAddTaskFormListeners(projects);

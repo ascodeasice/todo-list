@@ -1,5 +1,6 @@
 :root {
     --sidebarColor: rgb(177, 173, 173);
+    --fontColor: white;
     --bgColor: pink;
     --projectHoverColor: rgb(86, 190, 204);
     --smallFontSize: 1.5rem;
@@ -75,7 +76,7 @@ label {
 
 #sidebar p {
     justify-self: center;
-    color: white;
+    color: var(--fontColor);
     margin: 10px;
     font-size: var(--fontSize, 2rem);
     font-family: sans-serif;
@@ -87,7 +88,7 @@ label {
 
 #content div {
     display: grid;
-    grid-template-columns: min-content 1fr;
+    grid-template-columns: min-content 1fr min-content min-content;
     grid-template-rows: repeat(3, min-content);
     overflow: auto;
     padding-left: 50px;
@@ -97,7 +98,7 @@ label {
 
 #content p {
     justify-self: flex-start;
-    color: white;
+    color: var(--fontColor);
     margin: 10px;
     font-size: var(--fontSize, 2rem);
     font-family: sans-serif;
@@ -146,7 +147,7 @@ label {
 /* date and description of task */
 #content .taskInfo {
     font-size: var(--smallFontSize);
-    margin: 0;
+    margin: 0 0 0 10px;
     color: var(--taskInfoColor);
 }
 
@@ -178,4 +179,13 @@ label {
 /* red */
 .priority4Icon {
     filter: invert(43%) sepia(98%) saturate(4118%) hue-rotate(342deg) brightness(89%) contrast(82%);
+}
+
+.delTaskIcon {
+    justify-self: flex-end;
+    margin-right: 20px;
+}
+
+.editTaskIcon {
+    margin-right: 10px;
 }

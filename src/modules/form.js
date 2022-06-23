@@ -1,15 +1,17 @@
-//get data from addProjectForm, addTaskForm, then add them to the project/item list
+//get data from addProjectForm, addTaskForm, editTaskForm, then add them to the project/item list
 import Task from "./Task";
 import Project from "./Project";
 import { renderSidebar } from "./sidebar";
 import { renderContent } from "./content";
 
+//add project form
 const projectForm = document.getElementById("addProjectForm");
 const addProjectBtn = document.getElementById("addProjectBtn");
 const cancelAddProjectBtn = document.getElementById("cancelAddProjectBtn");
 const projectTitleInput = document.getElementById("projectTitleInput");
 
-const taskForm = document.getElementById("addTaskForm");
+//add task form
+const addTaskForm = document.getElementById("addTaskForm");
 const addTaskBtn = document.getElementById("addTaskBtn");
 const cancelAddTaskBtn = document.getElementById("cancelAddTaskBtn");
 const taskTitleInput = document.getElementById("taskTitleInput");
@@ -17,7 +19,18 @@ const taskPriorityInput = document.getElementById("taskPriorityInput");
 const taskDesInput = document.getElementById("taskDesInput");
 const taskDateInput = document.getElementById("taskDateInput");
 
-const addProjectFormListeners = (projects) => {
+//edit task form
+const editTaskForm = document.getElementById("editTaskForm");
+const editTaskBtn = document.getElementById("editTaskBtn");
+const cancelEditTaskBtn = document.getElementById("cancelEditTaskBtn");
+const editTaskTitleInput = document.getElementById("editTaskTitleInput");
+const editTaskPriorityInput = document.getElementById("editTaskPriorityInput");
+const editTaskDesInput = document.getElementById("editTaskDesInput");
+const editTaskDateInput = document.getElementById("editTaskDateInput");
+
+//TODO edit project name
+
+function addProjectFormListeners(projects) {
     addProjectBtn.addEventListener("click", () => {
         if (projectTitleInput.value == "")
             return;
@@ -40,8 +53,7 @@ function resetTaskForm() {
     taskDateInput.value = "";
 }
 
-const addTaskFormListeners = (projects) => {
-
+function addAddTaskFormListeners(projects) {
     addTaskBtn.addEventListener("click", () => {
         const projectWrappers = document.getElementsByClassName("projectWrapper");
 
@@ -59,14 +71,36 @@ const addTaskFormListeners = (projects) => {
         }
 
         resetTaskForm();
-        taskForm.style.visibility = "hidden";
+        addTaskForm.style.visibility = "hidden";
 
     })
 
     cancelAddTaskBtn.addEventListener("click", () => {
         resetTaskForm();
-        taskForm.style.visibility = "hidden";
+        addTaskForm.style.visibility = "hidden";
     })
 }
 
-export { addProjectFormListeners, addTaskFormListeners }
+function addEditTaskFormListeners(project, taskIndex) {
+    let task = project.taskList[taskIndex];
+
+    editTaskTitleInput.value = task.title;
+    editTaskPriorityInput.value = task.priority;
+    editTaskDesInput.value = task.description;
+    editTaskDateInput.value = task.dueDate;
+
+    editTaskBtn.addEventListener("click", () => {
+        if (editTaskTitleInput.value == "" || editTaskPriorityInput.value == "")
+            return;
+        const newTask = Task(editTaskTitleInput.value, editTaskDesInput.value, editTaskDateInput.value, editTaskPriorityInput.value);
+        project.taskList[taskIndex] = newTask;
+        renderContent(project);
+        editTaskForm.style.visibility = "hidden";
+    });
+
+    cancelEditTaskBtn.addEventListener("click", () => {
+        editTaskForm.style.visibility = "hidden";
+    })
+}
+
+export { addProjectFormListeners, addAddTaskFormListeners, addEditTaskFormListeners }
