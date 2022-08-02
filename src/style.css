@@ -35,17 +35,22 @@ button {
 }
 
 button:hover {
-  background-color: var(--buttonHoverColor)
+  background-color: var(--buttonHoverColor);
 }
 
 label {
   padding-top: 10px;
 }
 
+.icon:hover {
+  opacity: 0.5;
+}
+
 #mainContainer {
   width: 100vw;
   min-height: 100vh;
   display: grid;
+  grid-template-rows: min-content 1fr;
   grid-template-columns: 1fr 4fr;
 }
 
@@ -201,4 +206,54 @@ label {
 
 #addProjectContainer:hover {
   color: var(--hoverTextColor);
+}
+
+#header {
+  grid-column: 1/-1;
+  background-color: var(--hoverTextColor);
+  display: grid;
+  grid-template-columns: min-content min-content;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10%;
+  z-index: 1;
+  box-shadow: 0 0 10px black;
+}
+
+#heading {
+  margin-left: 10px;
+  color: white;
+  font-size: 2.5rem;
+  white-space: nowrap;
+}
+
+#profile {
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  align-items: center;
+  column-gap: 20px;
+}
+
+#userName {
+  white-space: nowrap;
+  color: white;
+  font-size: 1.5rem;
+}
+
+#profileImg {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 2rem;
+}
+
+#signInBtn, #signOutBtn {
+  background-color: var(--cancelAddBtnColor);
+}
+
+#signInBtn:hover {
+  background-color: var(--buttonHoverColor);
+}
+
+#signOutBtn:hover {
+  background-color: var(--buttonHoverColor);
 }

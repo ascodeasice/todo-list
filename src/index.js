@@ -4,15 +4,17 @@ import { renderSidebar } from "./modules/sidebar.js";
 import { renderContent } from "./modules/content.js";
 import './style.css';
 import { addProjectFormListeners, addAddTaskFormListeners } from "./modules/form.js";
-import { signIn, signOutUser } from "./modules/firebase";
-import { getAuth } from 'firebase/auth';
+import { signIn, signOutUser, updateProfile } from "./modules/firebase";
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const signInBtn = document.getElementById('signInBtn');
 const signOutBtn = document.getElementById('signOutBtn');
 
 signInBtn.addEventListener('click', signIn);
-
 signOutBtn.addEventListener('click', signOutUser);
+
+updateProfile();
+onAuthStateChanged(getAuth(), updateProfile);
 
 let exampleTasks = [];
 for (let i = 1; i <= 4; i++) {
