@@ -1,204 +1,204 @@
 :root {
-    --sidebarColor: #ebecec;
-    --bgColor: white;
-    --chosenProjectColor: #dbdbdb;
-    --smallFontSize: 1.5rem;
-    --fontSize: 2rem;
-    --formWidth: 30%;
-    --formHeight: 60%;
-    --formColor: #FFE8D6;
-    --hoverTextColor: #db4c3f;
-    --buttonHoverColor: #769FCD;
-    --addBtnColor: #FF971D;
-    --taskInfoColor: #8f9b9b;
-    --cancelAddBtnColor: rgb(136, 129, 116);
-    --btnHeight: 30px;
-    --btnWidth: calc(3 * var(--btnHeight));
+  --sidebarColor: #ebecec;
+  --bgColor: white;
+  --chosenProjectColor: #dbdbdb;
+  --smallFontSize: 1.5rem;
+  --fontSize: 2rem;
+  --formWidth: 30%;
+  --formHeight: 60%;
+  --formColor: #FFE8D6;
+  --hoverTextColor: #db4c3f;
+  --buttonHoverColor: #769FCD;
+  --addBtnColor: #FF971D;
+  --taskInfoColor: #8f9b9b;
+  --cancelAddBtnColor: rgb(136, 129, 116);
+  --btnHeight: 30px;
+  --btnWidth: calc(3 * var(--btnHeight));
 }
 
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 img {
-    width: var(--fontSize);
-    height: var(--fontSize);
+  width: var(--fontSize);
+  height: var(--fontSize);
 }
 
 button {
-    border-radius: 2rem;
-    width: var(--btnWidth);
-    height: var(--btnHeight);
-    color: white;
-    border: none;
+  border-radius: 2rem;
+  width: var(--btnWidth);
+  height: var(--btnHeight);
+  color: white;
+  border: none;
 }
 
 button:hover {
-    background-color: var(--buttonHoverColor)
+  background-color: var(--buttonHoverColor)
 }
 
 label {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
 #mainContainer {
-    width: 100vw;
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 4fr;
+  width: 100vw;
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
 }
 
 #sidebar {
-    background-color: var(--sidebarColor);
-    display: grid;
-    grid-auto-rows: min-content;
+  background-color: var(--sidebarColor);
+  display: grid;
+  grid-auto-rows: min-content;
 }
 
 #content {
-    background-color: var(--bgColor);
-    display: grid;
-    grid-auto-rows: min-content;
+  background-color: var(--bgColor);
+  display: grid;
+  grid-auto-rows: min-content;
 }
 
 #sidebar div {
-    margin: 0;
-    display: grid;
-    grid-template-columns: 1fr min-content min-content;
-    align-items: center;
-    overflow: auto;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr min-content min-content;
+  align-items: center;
+  overflow: auto;
 }
 
 #sidebar div:hover:not(.chosenProject) {
-    background-color: var(--chosenProjectColor);
+  background-color: var(--chosenProjectColor);
 }
 
 #sidebar p {
-    white-space: nowrap;
-    /*prevent breaking line*/
-    justify-self: center;
-    color: var(--fontColor);
-    margin: 10px;
-    font-size: var(--fontSize, 2rem);
-    font-family: sans-serif;
-    justify-self: flex-start;
+  white-space: nowrap;
+  /*prevent breaking line*/
+  justify-self: center;
+  color: var(--fontColor);
+  margin: 10px;
+  font-size: var(--fontSize, 2rem);
+  font-family: sans-serif;
+  justify-self: flex-start;
 }
 
 .chosenProject {
-    background-color: var(--chosenProjectColor);
+  background-color: var(--chosenProjectColor);
 }
 
 #content div {
-    display: grid;
-    grid-template-columns: min-content 1fr min-content min-content;
-    grid-template-rows: repeat(3, min-content);
-    overflow: auto;
-    padding-left: 50px;
-    border-bottom: grey 1px solid;
-    align-items: center;
+  display: grid;
+  grid-template-columns: min-content 1fr min-content min-content;
+  grid-template-rows: repeat(3, min-content);
+  overflow: auto;
+  padding-left: 50px;
+  border-bottom: grey 1px solid;
+  align-items: center;
 }
 
 #content div:hover {
-    background-color: var(--chosenProjectColor);
+  background-color: var(--chosenProjectColor);
 }
 
 #content p {
-    justify-self: flex-start;
-    margin: 10px;
-    font-size: var(--fontSize, 2rem);
-    font-family: sans-serif;
+  justify-self: flex-start;
+  margin: 10px;
+  font-size: var(--fontSize, 2rem);
+  font-family: sans-serif;
 }
 
 #sidebar img {
-    width: var(--fontSize, 2rem);
-    height: var(--fontSize, 2rem);
-    margin-right: 15px;
+  width: var(--fontSize, 2rem);
+  height: var(--fontSize, 2rem);
+  margin-right: 15px;
 }
 
 .addForm {
-    position: absolute;
-    top: 20%;
-    left: 35%;
-    border-radius: 2rem;
-    width: var(--formWidth);
-    height: var(--formHeight);
-    background-color: var(--formColor);
-    border: 2px solid white;
-    visibility: hidden;
+  position: absolute;
+  top: 20%;
+  left: 35%;
+  border-radius: 2rem;
+  width: var(--formWidth);
+  height: var(--formHeight);
+  background-color: var(--formColor);
+  border: 2px solid white;
+  visibility: hidden;
 }
 
 .addBtn {
-    position: absolute;
-    bottom: 10%;
-    left: 20%;
-    background-color: var(--addBtnColor);
+  position: absolute;
+  bottom: 10%;
+  left: 20%;
+  background-color: var(--addBtnColor);
 }
 
 .cancelAddBtn {
-    position: absolute;
-    bottom: 10%;
-    right: 20%;
-    background-color: var(--cancelAddBtnColor);
+  position: absolute;
+  bottom: 10%;
+  right: 20%;
+  background-color: var(--cancelAddBtnColor);
 }
 
 .inputContainer {
-    position: absolute;
-    top: 10%;
-    left: 10%;
-    display: grid;
-    grid-template-rows: min-content min-content;
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  display: grid;
+  grid-template-rows: min-content min-content;
 }
 
 /* date and description of task */
 #content .taskInfo {
-    font-size: var(--smallFontSize);
-    margin: 0 0 0 10px;
-    color: var(--taskInfoColor);
+  font-size: var(--smallFontSize);
+  margin: 0 0 0 10px;
+  color: var(--taskInfoColor);
 }
 
 .taskDes {
-    grid-row: 2/3;
-    grid-column: 2/3;
+  grid-row: 2/3;
+  grid-column: 2/3;
 }
 
 .taskDate {
-    grid-row: 3/4;
-    grid-column: 2/3;
+  grid-row: 3/4;
+  grid-column: 2/3;
 }
 
 /* gray */
 .priority1Icon {
-    filter: invert(61%) sepia(0%) saturate(539%) hue-rotate(204deg) brightness(83%) contrast(84%);
+  filter: invert(61%) sepia(0%) saturate(539%) hue-rotate(204deg) brightness(83%) contrast(84%);
 }
 
 /* blue */
 .priority2Icon {
-    filter: invert(35%) sepia(44%) saturate(2571%) hue-rotate(199deg) brightness(92%) contrast(90%);
+  filter: invert(35%) sepia(44%) saturate(2571%) hue-rotate(199deg) brightness(92%) contrast(90%);
 }
 
 /* orange */
 .priority3Icon {
-    filter: invert(74%) sepia(37%) saturate(6479%) hue-rotate(359deg) brightness(95%) contrast(94%);
+  filter: invert(74%) sepia(37%) saturate(6479%) hue-rotate(359deg) brightness(95%) contrast(94%);
 }
 
 /* red */
 .priority4Icon {
-    filter: invert(43%) sepia(98%) saturate(4118%) hue-rotate(342deg) brightness(89%) contrast(82%);
+  filter: invert(43%) sepia(98%) saturate(4118%) hue-rotate(342deg) brightness(89%) contrast(82%);
 }
 
 .delTaskIcon {
-    justify-self: flex-end;
-    margin-right: 20px;
+  justify-self: flex-end;
+  margin-right: 20px;
 }
 
 .editTaskIcon {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 #addTaskContainer:hover {
-    color: var(--hoverTextColor);
+  color: var(--hoverTextColor);
 }
 
 #addProjectContainer:hover {
-    color: var(--hoverTextColor);
+  color: var(--hoverTextColor);
 }

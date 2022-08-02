@@ -1,0 +1,32 @@
+[debug] [2022-08-02T06:50:01.119Z] ----------------------------------------------------------------------
+[debug] [2022-08-02T06:50:01.121Z] Command:       /home/leo/.nvm/versions/node/v16.14.0/bin/node /home/leo/.nvm/versions/node/v16.14.0/bin/firebase serve
+[debug] [2022-08-02T06:50:01.122Z] CLI Version:   11.4.1
+[debug] [2022-08-02T06:50:01.122Z] Platform:      linux
+[debug] [2022-08-02T06:50:01.122Z] Node Version:  v16.14.0
+[debug] [2022-08-02T06:50:01.122Z] Time:          Tue Aug 02 2022 14:50:01 GMT+0800 (台北標準時間)
+[debug] [2022-08-02T06:50:01.123Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-08-02T06:50:01.223Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-08-02T06:50:01.224Z] > authorizing via signed-in user (ab0988956087@gmail.com)
+[debug] [2022-08-02T06:50:01.224Z] [iam] checking project todo-list-6452b for permissions ["firebase.projects.get"]
+[debug] [2022-08-02T06:50:01.227Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/todo-list-6452b:testIamPermissions [none]
+[debug] [2022-08-02T06:50:01.227Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/todo-list-6452b:testIamPermissions x-goog-quota-user=projects/todo-list-6452b
+[debug] [2022-08-02T06:50:01.228Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/todo-list-6452b:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-08-02T06:50:02.268Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/todo-list-6452b:testIamPermissions 200
+[debug] [2022-08-02T06:50:02.269Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/todo-list-6452b:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2022-08-02T06:50:02.270Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/todo-list-6452b [none]
+[debug] [2022-08-02T06:50:02.673Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/todo-list-6452b 200
+[debug] [2022-08-02T06:50:02.673Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/todo-list-6452b {"projectId":"todo-list-6452b","projectNumber":"1069815548497","displayName":"Todo-list","name":"projects/todo-list-6452b","resources":{"hostingSite":"todo-list-6452b","storageBucket":"todo-list-6452b.appspot.com","locationId":"asia-east1"},"state":"ACTIVE","etag":"1_d4a4406b-5ef4-41c9-ab43-9ab0d3200e16"}
+[info] 
+[info] === Serving from '/home/leo/repos/todo-list'...
+[info] 
+[debug] [2022-08-02T06:50:02.676Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/todo-list-6452b/sites 
+[debug] [2022-08-02T06:50:03.972Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/todo-list-6452b/sites 200
+[debug] [2022-08-02T06:50:03.972Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/todo-list-6452b/sites {"sites":[{"name":"projects/todo-list-6452b/sites/todo-list-6452b","defaultUrl":"https://todo-list-6452b.web.app","appId":"1:1069815548497:web:d07d1ab376e917d4928670","type":"DEFAULT_SITE"}]}
+[debug] [2022-08-02T06:50:03.973Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/todo-list-6452b/webApps/1:1069815548497:web:d07d1ab376e917d4928670/config [none]
+[debug] [2022-08-02T06:50:05.227Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/todo-list-6452b/webApps/1:1069815548497:web:d07d1ab376e917d4928670/config 200
+[debug] [2022-08-02T06:50:05.228Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/todo-list-6452b/webApps/1:1069815548497:web:d07d1ab376e917d4928670/config {"projectId":"todo-list-6452b","appId":"1:1069815548497:web:d07d1ab376e917d4928670","storageBucket":"todo-list-6452b.appspot.com","locationId":"asia-east1","apiKey":"AIzaSyAS8edv-IMiN_-0cmWTVJ50CxBUzxZtWvY","authDomain":"todo-list-6452b.firebaseapp.com","messagingSenderId":"1069815548497"}
+[info] i  hosting: Serving hosting files from: dist {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mdist\u001b[22m"}}
+[info] ✔  hosting: Local server: http://localhost:5000 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://localhost:5000\u001b[22m\u001b[24m"}}
+[info] i  hosting: 127.0.0.1 - - [02/Aug/2022:06:50:09 +0000] "GET / HTTP/1.1" 200 3315 "-" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [02/Aug/2022:06:50:09 +0000] \"GET / HTTP/1.1\" 200 3315 \"-\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [02/Aug/2022:06:50:09 +0000] "GET /main.js HTTP/1.1" 200 2035896 "http://localhost:5000/" "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [02/Aug/2022:06:50:09 +0000] \"GET /main.js HTTP/1.1\" 200 2035896 \"http://localhost:5000/\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.88 Safari/537.36\""}}
