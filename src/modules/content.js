@@ -7,7 +7,7 @@ import Task from "./Task.js"
 import CirclePlus from "../assets/circlePlus.svg"
 import { format, parse, formatDistanceToNow } from "date-fns"
 import { isUserSignedIn } from "../firebase_modules/auth"
-import { saveTodo } from "../firebase_modules/firestore"
+import { saveTodo, deleteTodo } from "../firebase_modules/firestore"
 
 const contentDiv = document.getElementById("content");
 const editTaskForm = document.getElementById("editTaskForm");
@@ -43,6 +43,9 @@ function addCompleteIconListener(project) {
   const icons = document.getElementsByClassName("completeIcon");
   for (let i = 0; i < icons.length; i++) {
     icons[i].addEventListener("click", function () {
+      if (isUserSignedIn()) {
+        deleteTodo(project, project.taskList[i]);
+      }
       project.taskList.splice(i, 1);
       renderContent(project);
     });
@@ -53,6 +56,9 @@ function addDeleteIconListener(project) {
   const icons = document.getElementsByClassName("delTaskIcon");
   for (let i = 0; i < icons.length; i++) {
     icons[i].addEventListener("click", () => {
+      if (isUserSignedIn()) {
+        deleteTodo(project, project.taskList[i]);
+      }
       project.taskList.splice(i, 1);
       renderContent(project);
     })
@@ -93,9 +99,12 @@ function isValidDate(d) {
 }
 
 function renderContent(project) {
-  if (!project)
+  if (!project) {
     return;
+  }
   contentDiv.innerText = "";
+  // sort by priority
+  project.taskList.sort((a, b) => b.priority - a.priority);
   project.taskList.forEach(task => {
     const wrapper = document.createElement("div");
     wrapper.classList.add("taskWrapper");
