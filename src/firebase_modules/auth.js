@@ -1,18 +1,7 @@
-import { initializeApp } from 'firebase/app';
 import { getAuth, signInWithPopup, signOut, GoogleAuthProvider } from 'firebase/auth';
 import defaultProfile from '../assets/profile.svg';
+import { getCollection } from './firestore';
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAS8edv-IMiN_-0cmWTVJ50CxBUzxZtWvY",
-  authDomain: "todo-list-6452b.firebaseapp.com",
-  projectId: "todo-list-6452b",
-  storageBucket: "todo-list-6452b.appspot.com",
-  messagingSenderId: "1069815548497",
-  appId: "1:1069815548497:web:d07d1ab376e917d4928670"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 
 const userName = document.getElementById('userName');
 const profileImg = document.getElementById('profileImg');
@@ -49,7 +38,7 @@ function getUserPhotoUrl() {
   return isUserSignedIn() ? getAuth().currentUser.photoURL : defaultProfile;
 }
 
-function updateProfile() {
+async function updateProfile() {
   if (isUserSignedIn()) {
     signInBtn.style.display = 'none';
     signOutBtn.style.display = 'block';
@@ -61,4 +50,12 @@ function updateProfile() {
   userName.innerText = getUserName();
 }
 
-export { app, auth, signIn, signOutUser, isUserSignedIn, updateProfile };
+function getUserId() {
+  if (isUserSignedIn()) {
+    return getAuth().currentUser.uid;
+  } else {
+    throw new Error('Can\'t get id when user\'s not logged in');
+  }
+}
+
+export { signIn, signOutUser, isUserSignedIn, updateProfile, getUserId };

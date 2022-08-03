@@ -3,6 +3,8 @@ import Task from "./Task";
 import Project from "./Project";
 import { renderSidebar } from "./sidebar";
 import { renderContent } from "./content";
+import { isUserSignedIn } from "../firebase_modules/auth";
+import { saveTodo, saveProject } from "../firebase_modules/firestore";
 
 //add project form
 const projectForm = document.getElementById("addProjectForm");
@@ -20,54 +22,62 @@ const taskDesInput = document.getElementById("taskDesInput");
 const taskDateInput = document.getElementById("taskDateInput");
 
 function addProjectFormListeners(projects) {
-    addProjectBtn.addEventListener("click", () => {
-        if (projectTitleInput.value == "")
-            return;
-        projects.push(Project(projectTitleInput.value, []));
-        renderSidebar(projects);
-        projectTitleInput.value = "";
-        projectForm.style.visibility = "hidden";
-    })
+  addProjectBtn.addEventListener("click", () => {
+    if (projectTitleInput.value == "")
+      return;
+    const newProject = Project(projectTitleInput.value, []);
+    projects.push(newProject);
+    if (isUserSignedIn()) {
+      saveProject(newProject);
+    }
+    renderSidebar(projects);
+    projectTitleInput.value = "";
+    projectForm.style.visibility = "hidden";
+  })
 
-    cancelAddProjectBtn.addEventListener("click", () => {
-        projectTitleInput.value = "";
-        projectForm.style.visibility = "hidden";
-    })
+  cancelAddProjectBtn.addEventListener("click", () => {
+    projectTitleInput.value = "";
+    projectForm.style.visibility = "hidden";
+  })
 }
 
 function resetTaskForm() {
-    taskTitleInput.value = "";
-    taskPriorityInput.value = "1";
-    taskDesInput.value = "";
-    taskDateInput.value = "";
+  taskTitleInput.value = "";
+  taskPriorityInput.value = "1";
+  taskDesInput.value = "";
+  taskDateInput.value = "";
 }
 
 function addAddTaskFormListeners(projects) {
-    addTaskBtn.addEventListener("click", () => {
-        const projectWrappers = document.getElementsByClassName("projectWrapper");
+  addTaskBtn.addEventListener("click", () => {
+    const projectWrappers = document.getElementsByClassName("projectWrapper");
 
-        if (taskTitleInput.value == "" || taskPriorityInput.value == "" || Number(taskPriorityInput.value) < 1 || Number(taskPriorityInput.value) > 4)
-            return;
+    if (taskTitleInput.value == "" || taskPriorityInput.value == "" || Number(taskPriorityInput.value) < 1 || Number(taskPriorityInput.value) > 4)
+      return;
 
-        //get the chosen projectdifference between "invalid dates" (2013-13-32) and "invalid date objects" (new Date('foo')). T
-        for (let i = 0; i < projects.length; i++) {
-            if (projectWrappers[i].classList.contains("chosenProject")) {
-                let task = Task(taskTitleInput.value, taskDesInput.value, taskDateInput.value, Number(taskPriorityInput.value));
-                projects[i].addTask(task);
-                renderContent(projects[i]);
-                break;
-            }
+    //get the chosen project
+    for (let i = 0; i < projects.length; i++) {
+      if (projectWrappers[i].classList.contains("chosenProject")) {
+        let task = Task(taskTitleInput.value, taskDesInput.value, taskDateInput.value, Number(taskPriorityInput.value));
+        projects[i].addTask(task);
+        if (isUserSignedIn) {
+          saveTodo(projects[i], task);
         }
 
-        resetTaskForm();
-        addTaskForm.style.visibility = "hidden";
+        renderContent(projects[i]);
+        break;
+      }
+    }
 
-    })
+    resetTaskForm();
+    addTaskForm.style.visibility = "hidden";
 
-    cancelAddTaskBtn.addEventListener("click", () => {
-        resetTaskForm();
-        addTaskForm.style.visibility = "hidden";
-    })
+  })
+
+  cancelAddTaskBtn.addEventListener("click", () => {
+    resetTaskForm();
+    addTaskForm.style.visibility = "hidden";
+  })
 }
 
 export { addProjectFormListeners, addAddTaskFormListeners }

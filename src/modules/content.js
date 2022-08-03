@@ -6,6 +6,8 @@ import Edit from "../assets/edit.svg"
 import Task from "./Task.js"
 import CirclePlus from "../assets/circlePlus.svg"
 import { format, parse, formatDistanceToNow } from "date-fns"
+import { isUserSignedIn } from "../firebase_modules/auth"
+import { saveTodo } from "../firebase_modules/firestore"
 
 const contentDiv = document.getElementById("content");
 const editTaskForm = document.getElementById("editTaskForm");
@@ -43,7 +45,7 @@ function addCompleteIconListener(project) {
     icons[i].addEventListener("click", function () {
       project.taskList.splice(i, 1);
       renderContent(project);
-    })
+    });
   }
 }
 
