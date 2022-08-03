@@ -4,6 +4,8 @@ import Plus from "../assets/plus.svg"
 import Edit from "../assets/edit.svg"
 import CirclePlus from "../assets/circlePlus.svg"
 import { renderContent } from "./content";
+import { deleteProject } from '../firebase_modules/firestore';
+import { isUserSignedIn } from "../firebase_modules/auth";
 
 const sidebar = document.getElementById("sidebar");
 const editProjectForm = document.getElementById("editProjectForm");
@@ -46,6 +48,9 @@ function addDeleteIconListener(projectList) {
   const deleteIcons = document.getElementsByClassName("delProjectIcon");
   for (let i = 0; i < deleteIcons.length; i++) {
     deleteIcons[i].addEventListener("click", () => {
+      if (isUserSignedIn()) {
+        deleteProject(projectList[i]);
+      }
       projectList.splice(i, 1);
       document.getElementById("content").innerText = "";
       renderSidebar(projectList);

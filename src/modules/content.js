@@ -7,7 +7,7 @@ import Task from "./Task.js"
 import CirclePlus from "../assets/circlePlus.svg"
 import { format, parse, formatDistanceToNow } from "date-fns"
 import { isUserSignedIn } from "../firebase_modules/auth"
-import { saveTodo, deleteTodo } from "../firebase_modules/firestore"
+import { deleteTodo } from "../firebase_modules/firestore"
 
 const contentDiv = document.getElementById("content");
 const editTaskForm = document.getElementById("editTaskForm");

@@ -30,9 +30,16 @@ async function saveTodo(project, task) {
   }
 }
 
-// delete project in db
-function deleteProject() {
-  // NOTE delete all the docs in tasks subcollection before deleting project
+// delete every tasks, then project in db
+async function deleteProject(project) {
+  if (!isUserSignedIn()) {
+    return;
+  }
+  const tasksCollection = await getCollection(`${getUserId()}/${project.title}/tasks`);
+  for (let doc of tasksCollection.docs) {
+    await deleteDoc(doc.ref);
+  }
+  deleteDoc(doc(db, `${getUserId()}/${project.title}`));
 }
 
 // delete current projects to db
@@ -84,4 +91,4 @@ async function updateTasks(projects) {
 }
 
 
-export { saveTodo, saveProject, getCollection, updateTasks, deleteTodo };
+export { saveTodo, saveProject, getCollection, updateTasks, deleteTodo, deleteProject };
