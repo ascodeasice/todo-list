@@ -1,9 +1,13 @@
 # Todo-list
-A todo list project, the user can add/edit projects and tasks, the tasks also contains description and due date.  
+A todo list project, the user can add/edit projects and tasks, the tasks also contains description and due date.<br/>
+The user can also login with google, and save their edits.
 # Details
-This project uses webpack to control files, and date-fns module to format dates.
-The visual design of this project is mostly inspired by Todoist app.
+- Using webpack to bundle files
+- Visual design is mostly by Todoist app
+- Using firebase to do google authentication
+- Using firebase to store data of users
+
 # Result
-![picture of result](https://github.com/ascodeasice/todo-list/blob/main/src/assets/result.png)
+![picture of result](./dist/results/result.png)
 # Link
 [Live Preview](https://ascodeasice.github.io/todo-list/)
