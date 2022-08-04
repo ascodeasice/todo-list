@@ -2,18 +2,23 @@
   --sidebarColor: #ebecec;
   --bgColor: white;
   --chosenProjectColor: #dbdbdb;
-  --smallFontSize: 1.5rem;
-  --fontSize: 2rem;
-  --formWidth: 30%;
-  --formHeight: 60%;
+  --smallFontSize: 1.5vw;
+  --fontSize: 2vw;
+  --formWidth: 60vw;
+  --formHeight: 60vh;
   --formColor: #FFE8D6;
   --hoverTextColor: #db4c3f;
   --buttonHoverColor: #769FCD;
   --addBtnColor: #FF971D;
   --taskInfoColor: #8f9b9b;
   --cancelAddBtnColor: rgb(136, 129, 116);
-  --btnHeight: 30px;
+  --imgWidth: 4vh;
+  --btnHeight: var(--imgWidth);
   --btnWidth: calc(3 * var(--btnHeight));
+}
+
+* {
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -22,8 +27,12 @@ body {
 }
 
 img {
-  width: var(--fontSize);
-  height: var(--fontSize);
+  width: var(--imgWidth);
+  height: var(--imgWidth);
+}
+
+input {
+  width: 30vw;
 }
 
 button {
@@ -98,7 +107,7 @@ label {
   grid-template-columns: min-content 1fr min-content min-content;
   grid-template-rows: repeat(3, min-content);
   overflow: auto;
-  padding-left: 50px;
+  padding-left: 10px;
   border-bottom: grey 1px solid;
   align-items: center;
 }
@@ -123,35 +132,34 @@ label {
 .addForm {
   position: absolute;
   top: 20%;
-  left: 35%;
+  left: 20%;
   border-radius: 2rem;
   width: var(--formWidth);
   height: var(--formHeight);
   background-color: var(--formColor);
   border: 2px solid white;
   visibility: hidden;
+  display: grid;
+  grid-template-rows: 1fr min-content 5vh;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .addBtn {
-  position: absolute;
-  bottom: 10%;
-  left: 20%;
   background-color: var(--addBtnColor);
 }
 
 .cancelAddBtn {
-  position: absolute;
-  bottom: 10%;
-  right: 20%;
   background-color: var(--cancelAddBtnColor);
 }
 
 .inputContainer {
-  position: absolute;
-  top: 10%;
-  left: 10%;
   display: grid;
-  grid-template-rows: min-content min-content;
+  grid-auto-rows: min-content;
+  justify-content: center;
 }
 
 /* date and description of task */
@@ -223,31 +231,30 @@ label {
 #heading {
   margin-left: 10px;
   color: white;
-  font-size: 2.5rem;
+  font-size: 5vh;
   white-space: nowrap;
 }
 
 #profile {
   display: grid;
-  grid-template-columns: repeat(3, min-content);
+  grid-template-columns: repeat(2, min-content);
   align-items: center;
-  column-gap: 20px;
+  column-gap: 10px;
 }
 
 #userName {
   white-space: nowrap;
   color: white;
-  font-size: 1.5rem;
+  font-size: var(--smallFontSize);
 }
 
 #profileImg {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 2rem;
+  border-radius: var(--imgWidth);
 }
 
 #signInBtn, #signOutBtn {
-  background-color: var(--cancelAddBtnColor);
+  background-color: var(--addBtnColor);
+  grid-column: 2/-1;
 }
 
 #signInBtn:hover {

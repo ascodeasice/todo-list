@@ -5,6 +5,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <title>Todo</title>
 </head>
 
@@ -30,8 +33,10 @@
         <label for="projectTitleInput" id="projectTitleLabel">Title*</label>
         <input type="text" name="title" id="projectTitleInput" required>
       </div>
-      <button type="submit" id="addProjectBtn" class="addBtn">Confirm</button>
-      <button id="cancelAddProjectBtn" class="cancelAddBtn">Cancel</button>
+      <div class="buttonContainer">
+        <button type="submit" id="addProjectBtn" class="addBtn">Confirm</button>
+        <button id="cancelAddProjectBtn" class="cancelAddBtn">Cancel</button>
+      </div>
     </div>
   </form>
 
@@ -42,8 +47,10 @@
         <label for="editProjectTitleInput" id="editProjectTitleLabel">Title*</label>
         <input type="text" name="title" id="editProjectTitleInput" required>
       </div>
-      <button type="submit" id="editProjectBtn" class="addBtn">Confirm</button>
-      <button id="cancelEditProjectBtn" class="cancelAddBtn">Cancel</button>
+      <div class="buttonContainer">
+        <button type="submit" id="editProjectBtn" class="addBtn">Confirm</button>
+        <button id="cancelEditProjectBtn" class="cancelAddBtn">Cancel</button>
+      </div>
     </div>
   </form>
 
@@ -60,8 +67,10 @@
         <label for="taskDateInput">Due Date</label>
         <input type="date" name="#" id="taskDateInput" value="">
       </div>
-      <button id="addTaskBtn" class="addBtn">Confirm</button>
-      <button id="cancelAddTaskBtn" class="cancelAddBtn">Cancel</button>
+      <div class="buttonContainer">
+        <button id="addTaskBtn" class="addBtn">Confirm</button>
+        <button id="cancelAddTaskBtn" class="cancelAddBtn">Cancel</button>
+      </div>
     </div>
   </form>
 
@@ -78,8 +87,10 @@
         <label for="taskDateInput">Due Date</label>
         <input type="date" name="#" id="editTaskDateInput" value="">
       </div>
-      <button id="editTaskBtn" class="addBtn">Edit</button>
-      <button id="cancelEditTaskBtn" class="cancelAddBtn">Cancel</button>
+      <div class="buttonContainer">
+        <button id="editTaskBtn" class="addBtn">Edit</button>
+        <button id="cancelEditTaskBtn" class="cancelAddBtn">Cancel</button>
+      </div>
     </div>
   </form>
 

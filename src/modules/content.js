@@ -85,7 +85,6 @@ function addEditTaskIconListener(project) {
       const oldTask = project.taskList[chosenTaskIndex];
       const newTask = Task(editTaskTitleInput.value, editTaskDesInput.value, editTaskDateInput.value,
         editTaskPriorityInput.value, oldTask.id);
-      console.log(newTask.id);
 
       if (isUserSignedIn()) {
         editTask(project, newTask);
