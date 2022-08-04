@@ -7,7 +7,7 @@ import Task from "./Task.js"
 import CirclePlus from "../assets/circlePlus.svg"
 import { format, parse, formatDistanceToNow } from "date-fns"
 import { isUserSignedIn } from "../firebase_modules/auth"
-import { deleteTodo } from "../firebase_modules/firestore"
+import { deleteTodo, editTask } from "../firebase_modules/firestore"
 
 const contentDiv = document.getElementById("content");
 const editTaskForm = document.getElementById("editTaskForm");
@@ -82,7 +82,14 @@ function addEditTaskIconListener(project) {
     editTaskBtn.addEventListener("click", () => {
       if (editTaskTitleInput.value == "" || editTaskPriorityInput.value == "" || Number(taskPriorityInput.value) < 1 || Number(taskPriorityInput.value) > 4)
         return;
-      const newTask = Task(editTaskTitleInput.value, editTaskDesInput.value, editTaskDateInput.value, editTaskPriorityInput.value);
+      const oldTask = project.taskList[chosenTaskIndex];
+      const newTask = Task(editTaskTitleInput.value, editTaskDesInput.value, editTaskDateInput.value,
+        editTaskPriorityInput.value, oldTask.id);
+      console.log(newTask.id);
+
+      if (isUserSignedIn()) {
+        editTask(project, newTask);
+      }
       project.taskList[chosenTaskIndex] = newTask;
       renderContent(project);
       editTaskForm.style.visibility = "hidden";

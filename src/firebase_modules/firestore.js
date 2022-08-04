@@ -25,6 +25,7 @@ async function saveTodo(project, task) {
     updateDoc(doc(db, `${getUserId()}/${project.title}/tasks/${docRef.id}`), {
       id: docRef.id
     });
+    task.id = docRef.id;
   } catch (e) {
     console.error("Error adding document: ", e);
   }
@@ -83,12 +84,23 @@ async function updateTasks(projects) {
     // use .docs to turn collection into array, to use map()
     for (let project of userCollection.docs) {
       const tasksCollection = await getCollection(`${getUserId()}/${project.data().title}/tasks`);
-      const taskArr = tasksCollection.docs.map((task) => Task(task.data().title, task.data().description, task.data().dueDate, task.data().priority, task.data().id));
+      const taskArr = tasksCollection.docs.map((task) => {
+        return Task(task.data().title, task.data().description, task.data().dueDate,
+          task.data().priority, task.data().id);
+      });
       projects.push(Project(project.data().title, taskArr)); // change the parameter array
     }
     renderSidebar(projects);
   }
 }
 
+function editTask(project, task) {
+  if (!isUserSignedIn()) {
+    return;
+  }
+  setDoc(doc(db, `${getUserId()}/${project.title}/tasks/${task.id}`), task);
+}
+//TODO edit task and project
 
-export { saveTodo, saveProject, getCollection, updateTasks, deleteTodo, deleteProject };
+
+export { saveTodo, saveProject, getCollection, updateTasks, deleteTodo, deleteProject, editTask };
