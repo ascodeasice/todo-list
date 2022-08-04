@@ -9,20 +9,20 @@ function deleteTodo(project, task) {
   if (!isUserSignedIn()) {
     return;
   }
-  deleteDoc(doc(db, `${getUserId()}/${project.title}/tasks/${task.id}`));
+  deleteDoc(doc(db, `${getUserId()}/${project.id}/tasks/${task.id}`));
 }
 
 // save every todo items
 async function saveTodo(project, task) {
   try {
-    const docRef = await addDoc(collection(db, `${getUserId()}/${project.title}/tasks`), {
+    const docRef = await addDoc(collection(db, `${getUserId()}/${project.id}/tasks`), {
       title: task.title,
       description: task.description,
       dueDate: task.dueDate,
       priority: task.priority
     });
     // save ID of task
-    updateDoc(doc(db, `${getUserId()}/${project.title}/tasks/${docRef.id}`), {
+    updateDoc(doc(db, `${getUserId()}/${project.id}/tasks/${docRef.id}`), {
       id: docRef.id
     });
     task.id = docRef.id;
@@ -36,20 +36,24 @@ async function deleteProject(project) {
   if (!isUserSignedIn()) {
     return;
   }
-  const tasksCollection = await getCollection(`${getUserId()}/${project.title}/tasks`);
+  const tasksCollection = await getCollection(`${getUserId()}/${project.id}/tasks`);
   for (let doc of tasksCollection.docs) {
-    await deleteDoc(doc.ref);
+    deleteDoc(doc.ref);
   }
-  deleteDoc(doc(db, `${getUserId()}/${project.title}`));
+  deleteDoc(doc(db, `${getUserId()}/${project.id}`));
 }
 
 // delete current projects to db
-function saveProject(project) {
+async function saveProject(project) {
   if (isUserSignedIn()) {
     // add project with its title as ID
-    setDoc(doc(db, `${getUserId()}/${project.title}`), {
+    const docRef = await addDoc(collection(db, `${getUserId()}`), {
       title: project.title
     });
+    updateDoc(doc(db, `${getUserId()}/${docRef.id}`), {
+      id: docRef.id
+    });
+    project.id = docRef.id;
   } else {
     throw new Error('Can\'t save project when user isn\'t signed in');
   }
@@ -68,12 +72,12 @@ async function updateTasks(projects) {
   const userCollection = await getCollection(getUserId());
   if (userCollection.size === 0) {
     // save all the projects 
-    projects.forEach((project) => {
-      saveProject(project);
-      project.taskList.forEach((task) => {
+    for (let project of projects) {
+      await saveProject(project);
+      for (let task of project.taskList) {
         saveTodo(project, task);
-      });
-    });
+      }
+    }
   } else {
     // NOTE array is pass by reference, so this function changes "projects"
     while (projects.length > 0) {
@@ -83,12 +87,12 @@ async function updateTasks(projects) {
     // NOTE for each loop fires without waiting for await
     // use .docs to turn collection into array, to use map()
     for (let project of userCollection.docs) {
-      const tasksCollection = await getCollection(`${getUserId()}/${project.data().title}/tasks`);
+      const tasksCollection = await getCollection(`${getUserId()}/${project.data().id}/tasks`);
       const taskArr = tasksCollection.docs.map((task) => {
         return Task(task.data().title, task.data().description, task.data().dueDate,
           task.data().priority, task.data().id);
       });
-      projects.push(Project(project.data().title, taskArr)); // change the parameter array
+      projects.push(Project(project.data().title, taskArr, project.data().id)); // change the parameter array
     }
     renderSidebar(projects);
   }
@@ -98,9 +102,18 @@ function editTask(project, task) {
   if (!isUserSignedIn()) {
     return;
   }
-  setDoc(doc(db, `${getUserId()}/${project.title}/tasks/${task.id}`), task);
+  setDoc(doc(db, `${getUserId()}/${project.id}/tasks/${task.id}`), task);
 }
-//TODO edit task and project
+
+function editProject(oldProject, newTitle) {
+  // NOTE only edits its title
+  if (!isUserSignedIn()) {
+    return;
+  }
+  updateDoc(doc(db, `${getUserId()}/${oldProject.id}`), {
+    title: newTitle
+  });
+}
 
 
-export { saveTodo, saveProject, getCollection, updateTasks, deleteTodo, deleteProject, editTask };
+export { saveTodo, saveProject, getCollection, updateTasks, deleteTodo, deleteProject, editTask, editProject };

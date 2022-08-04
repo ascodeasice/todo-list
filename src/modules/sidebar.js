@@ -4,7 +4,8 @@ import Plus from "../assets/plus.svg"
 import Edit from "../assets/edit.svg"
 import CirclePlus from "../assets/circlePlus.svg"
 import { renderContent } from "./content";
-import { deleteProject } from '../firebase_modules/firestore';
+import Project from './Project';
+import { deleteProject, editProject } from '../firebase_modules/firestore';
 import { isUserSignedIn } from "../firebase_modules/auth";
 
 const sidebar = document.getElementById("sidebar");
@@ -71,6 +72,10 @@ function addEditProjectIconListener(projects) {
   editProjectBtn.addEventListener("click", () => {
     if (editProjectTitleInput.value == "")
       return;
+    const oldProject = projects[editProjectIndex];
+    if (isUserSignedIn()) {
+      editProject(oldProject, editProjectTitleInput.value);
+    }
     projects[editProjectIndex].title = editProjectTitleInput.value;
     renderSidebar(projects);
     editProjectForm.style.visibility = "hidden";
