@@ -10,4 +10,4 @@ The user can also login with google, and save their edits.
 # Result
 ![picture of result](./dist/results/result.png)
 # Link
-[Live Preview](https://ascodeasice.github.io/todo-list/)
+[Live Preview](https://todo-list-6452b.web.app)
